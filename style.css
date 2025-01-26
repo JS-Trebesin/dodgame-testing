@@ -1,0 +1,174 @@
+:root {
+    --locked-clr: #950606;
+    --unlocked-clr: green;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    /* font: inherit; Get rid of all font sizes and heights */
+}
+
+/* html {
+    color-scheme: dark light;  
+} 
+*/
+
+body {
+    min-height: 100vh;
+}
+
+/* Media responsive */
+img,
+picture,
+svg,
+video {
+    display: block;
+    max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-wrap: balance;
+}
+
+p {
+    max-width: 75ch;
+    text-wrap: pretty; /* Prevents orphans on lines */
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    :has(:target) {
+        scroll-behavior: smooth;
+        scroll-padding-top: 3rem;
+    }
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url("img/background.jpg");
+    background-size: auto;
+    background-position: center;
+    gap: 0px;
+    position: relative;
+}
+
+header {
+    margin-top: 10vw;
+    display: flex;
+    justify-content: center;
+
+    img {
+        width: 75%;
+    }
+}
+
+#main-svg {
+    position: relative;
+    top: -8vh;
+}
+
+/* .map-container {
+    overflow: scroll;
+} */
+
+.rooms > g > g > path {
+    fill: var(--locked-clr);
+}
+.rooms > g > path {
+    fill: var(--locked-clr);
+    fill: black !important;
+}
+
+.draw {
+    stroke: var(--unlocked-clr);
+    stroke-width: 1;
+    animation: drawing 3s linear forwards;
+}
+
+@keyframes drawing {
+    50% {
+        stroke-dashoffset: 0;
+    }
+    100% {
+        stroke: none;
+        fill: var(--unlocked-clr);
+    }
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-inline: 10vw;
+    width: 80vw;
+    position: sticky;
+    bottom: 0vh;
+    transition: opacity 1s ease;
+
+    &.hidden {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0s ease;
+    }
+}
+
+.arrow-wrapper,
+.compass-wrapper {
+    position: relative;
+    margin-block: 3vh;
+}
+
+.arrow-wrapper {
+    position: relative;
+    bottom: -2vh;
+}
+
+.compass-wrapper {
+    background-image: url("img/bg-dark.jpg");
+    background-size: auto;
+    background-position: center;
+    border-radius: 50%;
+    /* padding: 3%; */
+    box-sizing: content-box;
+}
+
+.arrow {
+    height: 4vh;
+    /* rotate: 90deg; */
+    opacity: 0;
+    animation: pointing 0.6s ease-out alternate infinite;
+}
+
+.compass {
+    height: 8vh;
+}
+
+footer {
+    background-image: url("img/background.jpg");
+    background-size: auto;
+    background-position: center;
+    width: 100vw;
+    height: 3vh;
+    position: sticky;
+    bottom: 0;
+}
+
+@keyframes pointing {
+    100% {
+        translate: 0 -12px;
+    }
+}
