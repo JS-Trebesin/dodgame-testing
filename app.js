@@ -12,7 +12,7 @@ const findKey = (object, value) => {
     return Object.keys(object).find((key) => object[key] === value) || null
 }
 
-window.addEventListener("hashchange", () => {
+function checkHash() {
     const hash = window.location.hash
 
     let roomName = findKey(roomCodes, hash)
@@ -33,11 +33,11 @@ window.addEventListener("hashchange", () => {
 
         showEnd()
     })
-})
+}
 
 rooms.forEach((room) => {
     room.addEventListener("click", () => {
-        console.log(room, "v2")
+        console.log(room)
         roomsVisited++
         let paths = room.querySelectorAll("g:nth-child(1) > g > path")
 
@@ -91,4 +91,6 @@ function showEnd() {
     }
 }
 
-console.log("v2")
+checkHash()
+window.addEventListener("hashchange", checkHash)
+console.log("v3")
