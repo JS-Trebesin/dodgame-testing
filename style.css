@@ -93,6 +93,10 @@ header {
     fill: black !important;
 }
 
+.unlocked {
+    fill: var(--unlocked-clr) !important;
+}
+
 .draw {
     stroke: var(--unlocked-clr);
     stroke-width: 1;
