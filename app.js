@@ -3,6 +3,37 @@ const nav = document.querySelector("nav")
 const treasure = document.querySelector(".rooms-last")
 let scrollTimer
 let roomsVisited = 0
+const roomCodes = {
+    kovarna: "#abc",
+    robotika: "#qwe",
+}
+
+const findKey = (object, value) => {
+    return Object.keys(object).find((key) => object[key] === value) || null
+}
+
+window.addEventListener("hashchange", () => {
+    const hash = window.location.hash
+
+    let roomName = findKey(roomCodes, hash)
+
+    rooms.forEach((room) => {
+        if (room.id === roomName) {
+            roomsVisited++
+            let paths = room.querySelectorAll("g:nth-child(1) > g > path")
+
+            paths.forEach((path) => {
+                let length = path.getTotalLength()
+                path.style.fill = "none"
+                path.style.strokeDasharray = length
+                path.style.strokeDashoffset = length
+                path.classList.add("draw")
+            })
+        }
+
+        showEnd()
+    })
+})
 
 rooms.forEach((room) => {
     room.addEventListener("click", () => {
@@ -17,6 +48,14 @@ rooms.forEach((room) => {
             path.style.strokeDashoffset = length
             path.classList.add("draw")
         })
+
+        for (const key in roomCodes) {
+            if (roomCodes.hasOwnProperty(key)) {
+                if (room.id === key) {
+                    console.log(roomCodes[key])
+                }
+            }
+        }
 
         showEnd()
     })
