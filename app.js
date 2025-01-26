@@ -90,3 +90,5 @@ function showEnd() {
         })
     }
 }
+
+console.log("v2")
