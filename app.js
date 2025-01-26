@@ -37,7 +37,7 @@ window.addEventListener("hashchange", () => {
 
 rooms.forEach((room) => {
     room.addEventListener("click", () => {
-        console.log(room)
+        console.log(room, "v2")
         roomsVisited++
         let paths = room.querySelectorAll("g:nth-child(1) > g > path")
 
